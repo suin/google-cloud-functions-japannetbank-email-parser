@@ -1,0 +1,103 @@
+{
+  "name": "@suin/google-cloud-functions-japannetbank-email-parser",
+  "version": "0.0.0-development",
+  "private": true,
+  "description": "ジャパンネット銀行の通知メールをパースするGoogle Could Function",
+  "keywords": [
+    "japannetbank",
+    "serverless",
+    "serverless application",
+    "google cloud functions",
+    "email automation",
+    "emailhook",
+    "webhook"
+  ],
+  "homepage": "https://github.com/suin/google-cloud-functions-japannetbank-email-parser#readme",
+  "bugs": {
+    "url": "https://github.com/suin/google-cloud-functions-japannetbank-email-parser/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suin/google-cloud-functions-japannetbank-email-parser.git"
+  },
+  "license": "MIT",
+  "author": "suin <suinyeze@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -Xdf -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "clean:dry": "git clean -Xdfn -e '!/.idea/**' -e '!/node_modules' -e '!/node_modules/**'",
+    "format": "yarn prettier --write",
+    "format:check": "yarn prettier --check",
+    "gcp-build": "tsc",
+    "prettier": "prettier '**/*.{ts,tsx,json,json5,css,scss,graphql,gql,md,mdx,html,vue,yaml}'",
+    "reset": "git clean -Xdf -e '!/.idea/**'",
+    "reset:dry": "git clean -Xdfn -e '!/.idea/**'",
+    "semantic-release": "semantic-release",
+    "test": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json,json5,css,scss,graphql,gql,md,mdx,html,vue,yaml}": "prettier --write",
+    "./package.json": "sort-package-json"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^2.2.0",
+    "@suin/email-data": "^1.0.0",
+    "@suin/event-data": "^1.0.0",
+    "@suin/japannetbank-email-parser": "^1.0.0"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^1.6.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@suin/google-cloud-typed-pubsub-function": "^1.0.0",
+    "@types/jest": "^26.0.5",
+    "@types/node": "^14.0.24",
+    "husky": ">=4",
+    "jest": "^26.1.0",
+    "lint-staged": ">=10",
+    "prettier": "^2.0",
+    "semantic-release": "^17.1.1",
+    "sort-package-json": "^1.44.0",
+    "ts-jest": "^26.1.3",
+    "typescript": "^3.9"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ]
+        }
+      ]
+    ]
+  }
+}
